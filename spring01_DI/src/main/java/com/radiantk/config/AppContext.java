@@ -5,6 +5,9 @@ import org.springframework.context.annotation.Configuration;
 
 import com.radiantk.spring.ChangePasswordService;
 import com.radiantk.spring.MemberDao;
+import com.radiantk.spring.MemberInfoPrinter;
+import com.radiantk.spring.MemberListPrinter;
+import com.radiantk.spring.MemberPrinter;
 import com.radiantk.spring.MemberRegisterService;
 
 @Configuration
@@ -26,5 +29,24 @@ public class AppContext {
 		pwdService.setMemberDao(memberDao());
 		
 		return pwdService;
+	}
+	
+	@Bean
+	public MemberPrinter memberPrinter() {
+		return new MemberPrinter();
+	}
+	
+	@Bean
+	public MemberListPrinter memberListPrinter() {
+		return new MemberListPrinter(memberDao(), memberPrinter());
+	}
+	
+	@Bean
+	public MemberInfoPrinter memberInfoPrinter() {
+		MemberInfoPrinter printer = new MemberInfoPrinter();
+		printer.setMemberDao(memberDao());
+		printer.setMemberPrinter(memberPrinter());
+		
+		return printer;
 	}
 }
