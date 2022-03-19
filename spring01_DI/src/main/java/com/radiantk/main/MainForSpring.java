@@ -10,6 +10,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.radiantk.config.AppContext;
 import com.radiantk.spring.ChangePasswordService;
 import com.radiantk.spring.DuplicateMemberException;
+import com.radiantk.spring.MemberInfoPrinter;
+import com.radiantk.spring.MemberListPrinter;
 import com.radiantk.spring.MemberNotFoundException;
 import com.radiantk.spring.MemberRegisterService;
 import com.radiantk.spring.RegisterRequest;
@@ -38,7 +40,13 @@ public class MainForSpring {
 			} else if(command.startsWith("change ")) {
 				processChangeCommand(command.split(" "));
 				continue;
-			};
+			} else if(command.equals("list")) {
+				processListCommand();
+				continue;
+			} else if(command.startsWith("info ")) {
+				processInfoCommand(command.split(" "));
+				continue;
+			}
 			printHelp();
 		}
 	}
@@ -87,12 +95,30 @@ public class MainForSpring {
 		}
 	}
 	
+	private static void processListCommand() {
+		MemberListPrinter memberListPrinter =
+				ctx.getBean("memberListPrinter", MemberListPrinter.class);
+		memberListPrinter.printAll();
+	}
+	
+	private static void processInfoCommand(String[] arg) {
+		if(arg.length != 2) {
+			printHelp();
+			return;
+		}
+		MemberInfoPrinter infoPrinter = 
+				ctx.getBean("memberInfoPrinter", MemberInfoPrinter.class);
+		infoPrinter.printMemberInfo(arg[1]);
+	}
+	
 	private static void printHelp() {
 		System.out.println();
 		System.out.println("잘못된 명령입니다. 아래의 명령어 사용법을 확인하세요.");
 		System.out.println("명령어 사용법");
 		System.out.println("new 이메일 이름 암호 암호확인");
 		System.out.println("change 이메일 현재비밀번호 변경비밀번호");
+		System.out.println("list");
+		System.out.println("info 이메일");
 		System.out.println();
 	}
 
