@@ -1,5 +1,6 @@
 package com.radiantk.spring;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,6 +9,10 @@ public class MemberDao {
 	private static long nextId = 0;
 	
 	private Map<String, Member> map = new HashMap<>();
+	
+	public Collection<Member> selectAll(){
+		return map.values();
+	}
 	
 	public Member selectByEmail(String email) {
 		return map.get(email);
