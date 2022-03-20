@@ -11,5 +11,11 @@ ApplicationContext ctx = new AnnotationConfigApplicationContext(Config.class);
 ```
 - 의존성 자동주입 @Autowired : 의존에 필요한 Bean을 찾아서 의존성을 자동 주입함(동일한 빈이 두 개 이상이면 예외 발생)
 - @Qualifier : 동일한 빈이 존재할 때 의존 객체를 선택할 수 있음(자동 주입할 Bean을 지정)
+- @Autowired(required = false) : 매칭되는 빈이 없어도 예외를 발생하지 않고 자동 주입을 수행하지 않음
 
+
+
+<br/>
+<br/>
+<br/>
 [출처] 초보 웹 개발자를 위한 스프링5 프로그래밍 입문
