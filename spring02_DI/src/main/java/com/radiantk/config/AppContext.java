@@ -27,7 +27,6 @@ public class AppContext {
 	@Bean
 	public ChangePasswordService changePasswordService() {
 		ChangePasswordService pwdService = new ChangePasswordService();
-		pwdService.setMemberDao(memberDao());
 		
 		return pwdService;
 	}
@@ -45,8 +44,6 @@ public class AppContext {
 	@Bean
 	public MemberInfoPrinter memberInfoPrinter() {
 		MemberInfoPrinter printer = new MemberInfoPrinter();
-		printer.setMemberDao(memberDao());
-		printer.setMemberPrinter(memberPrinter());
 		
 		return printer;
 	}
