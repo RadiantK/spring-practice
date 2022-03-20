@@ -15,6 +15,7 @@ import com.radiantk.spring.MemberListPrinter;
 import com.radiantk.spring.MemberNotFoundException;
 import com.radiantk.spring.MemberRegisterService;
 import com.radiantk.spring.RegisterRequest;
+import com.radiantk.spring.VersionPrinter;
 import com.radiantk.spring.WrongIdPasswordException;
 
 public class MainForSpring {
@@ -45,6 +46,9 @@ public class MainForSpring {
 				continue;
 			} else if(command.startsWith("info ")) {
 				processInfoCommand(command.split(" "));
+				continue;
+			} else if(command.startsWith("version")) {
+				processVersionCommand();
 				continue;
 			}
 			printHelp();
@@ -111,6 +115,12 @@ public class MainForSpring {
 		infoPrinter.printMemberInfo(arg[1]);
 	}
 	
+	private static void processVersionCommand() {
+		VersionPrinter versionPrinter =
+				ctx.getBean("versionPrinter", VersionPrinter.class);
+		versionPrinter.print();
+	}
+	
 	private static void printHelp() {
 		System.out.println();
 		System.out.println("잘못된 명령입니다. 아래의 명령어 사용법을 확인하세요.");
@@ -119,6 +129,7 @@ public class MainForSpring {
 		System.out.println("change 이메일 현재비밀번호 변경비밀번호");
 		System.out.println("list");
 		System.out.println("info 이메일");
+		System.out.println("version");
 		System.out.println();
 	}
 
