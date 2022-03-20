@@ -7,7 +7,8 @@ import java.io.InputStreamReader;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.radiantk.config.AppContext;
+import com.radiantk.config.AppConfig1;
+import com.radiantk.config.AppConfig2;
 import com.radiantk.spring.ChangePasswordService;
 import com.radiantk.spring.DuplicateMemberException;
 import com.radiantk.spring.MemberInfoPrinter;
@@ -18,12 +19,12 @@ import com.radiantk.spring.RegisterRequest;
 import com.radiantk.spring.VersionPrinter;
 import com.radiantk.spring.WrongIdPasswordException;
 
-public class MainForSpring {
+public class MainForSpringAppContext {
 	private static ApplicationContext ctx = null;
 	
 	public static void main(String[] args) throws IOException {
 
-		ctx = new AnnotationConfigApplicationContext(AppContext.class);
+		ctx = new AnnotationConfigApplicationContext(AppConfig1.class, AppConfig2.class);
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
