@@ -9,6 +9,7 @@ import com.radiantk.spring.MemberInfoPrinter;
 import com.radiantk.spring.MemberListPrinter;
 import com.radiantk.spring.MemberPrinter;
 import com.radiantk.spring.MemberRegisterService;
+import com.radiantk.spring.VersionPrinter;
 
 @Configuration
 public class AppContext {
@@ -48,5 +49,14 @@ public class AppContext {
 		printer.setMemberPrinter(memberPrinter());
 		
 		return printer;
+	}
+	
+	@Bean
+	public VersionPrinter versionPrinter() {
+		VersionPrinter versionPrinter = new VersionPrinter();
+		versionPrinter.setMajorVersion(5);
+		versionPrinter.setMinorVersion(0);
+		
+		return versionPrinter;
 	}
 }
