@@ -1,7 +1,10 @@
 package com.radiantk.spring;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class ChangePasswordService {
 
+	@Autowired
 	private MemberDao memberDao;
 	
 	public void ChangePassword(String email, String oldPwd, String newPwd) {
