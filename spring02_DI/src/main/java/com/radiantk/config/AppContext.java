@@ -1,5 +1,6 @@
 package com.radiantk.config;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,6 +10,7 @@ import com.radiantk.spring.MemberInfoPrinter;
 import com.radiantk.spring.MemberListPrinter;
 import com.radiantk.spring.MemberPrinter;
 import com.radiantk.spring.MemberRegisterService;
+import com.radiantk.spring.MemberSummaryPrinter;
 import com.radiantk.spring.VersionPrinter;
 
 @Configuration
@@ -21,7 +23,7 @@ public class AppContext {
 	
 	@Bean
 	public MemberRegisterService memberRegisterService() {
-		return new MemberRegisterService(memberDao());
+		return new MemberRegisterService();
 	}
 	
 	@Bean
@@ -32,13 +34,20 @@ public class AppContext {
 	}
 	
 	@Bean
+	@Qualifier("printer")
 	public MemberPrinter memberPrinter() {
 		return new MemberPrinter();
 	}
 	
 	@Bean
+	@Qualifier("summaryPrinter")
+	public MemberPrinter memberPrinter2() {
+		return new MemberSummaryPrinter();
+	}
+	
+	@Bean
 	public MemberListPrinter memberListPrinter() {
-		return new MemberListPrinter(memberDao(), memberPrinter());
+		return new MemberListPrinter();
 	}
 	
 	@Bean
