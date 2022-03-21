@@ -4,7 +4,10 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
+// Bean으로 등록되는 이름이 listPrinter가 됨
+@Component(value = "listPrinter")
 public class MemberListPrinter {
 
 	private MemberDao memberDao;

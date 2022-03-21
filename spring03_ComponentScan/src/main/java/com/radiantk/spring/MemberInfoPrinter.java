@@ -2,7 +2,10 @@ package com.radiantk.spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
+//Bean으로 등록되는 이름이 infoPrinter가 됨
+@Component("infoPrinter")
 public class MemberInfoPrinter {
 	
 	private MemberDao memberDao;
