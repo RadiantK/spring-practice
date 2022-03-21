@@ -61,7 +61,7 @@ public class MainForSpringAppContext {
 			return;
 		}
 		MemberRegisterService regService =
-				ctx.getBean("memberRegisterService", MemberRegisterService.class);
+				ctx.getBean(MemberRegisterService.class);
 		RegisterRequest req = new RegisterRequest();
 		req.setEmail(args[1]);
 		req.setName(args[2]);
@@ -87,7 +87,7 @@ public class MainForSpringAppContext {
 		}
 		
 		ChangePasswordService changePasswordService = 
-				ctx.getBean("changePasswordService", ChangePasswordService.class);
+				ctx.getBean(ChangePasswordService.class);
 		
 		try {
 			changePasswordService.ChangePassword(args[1], args[2], args[3]);
@@ -101,7 +101,7 @@ public class MainForSpringAppContext {
 	
 	private static void processListCommand() {
 		MemberListPrinter memberListPrinter =
-				ctx.getBean("memberListPrinter", MemberListPrinter.class);
+				ctx.getBean("listPrinter", MemberListPrinter.class);
 		memberListPrinter.printAll();
 	}
 	
@@ -111,7 +111,7 @@ public class MainForSpringAppContext {
 			return;
 		}
 		MemberInfoPrinter infoPrinter = 
-				ctx.getBean("memberInfoPrinter", MemberInfoPrinter.class);
+				ctx.getBean("infoPrinter", MemberInfoPrinter.class);
 		infoPrinter.printMemberInfo(arg[1]);
 	}
 	
