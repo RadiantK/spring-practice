@@ -1,6 +1,7 @@
 package com.radiantk.spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 public class MemberInfoPrinter {
 	
@@ -23,6 +24,7 @@ public class MemberInfoPrinter {
 	}
 	
 	@Autowired
+	@Qualifier("printer")
 	public void setMemberPrinter(MemberPrinter memberPrinter) {
 		this.memberPrinter = memberPrinter;
 	}
