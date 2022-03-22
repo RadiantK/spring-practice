@@ -9,7 +9,7 @@ import com.radiantk.spring.MemberPrinter;
 import com.radiantk.spring.MemberSummaryPrinter;
 import com.radiantk.spring.VersionPrinter;
 
-// @component가 붙은 클래스의 객체를 생성해서 빈으로 등록
+// com.radiantk.spring하위 패키지의 @component가 붙은 클래스를 빈으로 등록
 @Configuration
 @ComponentScan(basePackages = {"com.radiantk.spring"})
 public class AppContext {
