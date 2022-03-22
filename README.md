@@ -13,6 +13,8 @@ ApplicationContext ctx = new AnnotationConfigApplicationContext(Config.class);
 - @Qualifier : 동일한 빈이 존재할 때 의존 객체를 선택할 수 있음(자동 주입할 Bean을 지정)
 - @Autowired(required = false) : 매칭되는 빈이 없어도 예외를 발생하지 않고 자동 주입을 수행하지 않음(자동 주입이 되는 대상이 되는 필드나 메서드에 null을 전달하지 않는다.)
 
+## 컴포넌트 스캔
+- @Component : class를 spring Bean으로 등록할 때 사용한다. 어노테이션에 값을 따로 지정하지않으면 클래스의 첫글자가 소문자로 바뀐 이름을 빈이름으로 사용하고(MemberDao => memberDao) 지정한 이름이 있으면 그 이름이 빈으로 등록된다.(@Component("daoMember"))
 
 
 <br/>
