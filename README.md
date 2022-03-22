@@ -37,6 +37,18 @@ ctx.close();
 ```
 - 스프링 컨테이너를 초기화 할때 먼저 Bean 객체를 생성하고 의존 설정을 한 뒤 빈 객체를 초기화 한다.
 - 컨테이너를 종료하면 빈 객체가 소멸하게 된다.
+- 빈 객체가 InitializeBean인터페이스를 구현하면 초기화 과정에서 afterPropertiesSet() 메소드를 실행하고, DisposableBean인터페이스를 구현하면 소멸과정에서 destroy()메소드를 실행한다.
+- DB커넥션 풀의 초기화 과정에서 DB와 연결하고 소멸과정에서 DB연결을 끊는데 사용하거나, 채팅 클라이언트에서 초기화 과정에서 서버와 연결하고 소멸 과정에서 서버와의 연결을 끊는데에 사용된다.
+- @Bean의 initMethod속성과 destroyMethod 속성을 통해서도 사용 가능하다.
+```java
+public class Clazz {
+    void init(){} // 초기화할 때 실행
+    void destroy(){} // 소멸할 때 실행
+}
+// @Bean의 속성값으로 컨테이너 초기화나 소멸할 때 실행될 메소드를 지정가능
+@Bean(initMethod = "init", destoryMethod="destroy")
+public Clazz clazz() {}
+```
 
 <br/>
 <br/>
