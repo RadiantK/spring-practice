@@ -18,8 +18,8 @@ ApplicationContext ctx = new AnnotationConfigApplicationContext(Config.class);
 - @Component : class를 spring Bean으로 등록할 때 사용한다. 어노테이션에 값을 따로 지정하지않으면 클래스의 첫글자가 소문자로 바뀐 이름을 빈이름으로 사용하고(MemberDao => memberDao) 지정한 이름이 있으면 그 이름이 빈으로 등록된다.(@Component("daoMember"))
 - @Component를 붙인 클래스를 스캔해서 스프링 빈으로 등록하려면 빈을 설정하는 클래스에 @ComponentScan을 적용해야 한다.
 ```java
-@Configuration
-@ComponentScan(basePackages = {com.sample.spring})
+@Configuration // 설정 클래스 지정
+@ComponentScan(basePackages = {com.sample.spring}) // 등록된 컴포넌트(빈)를 읽어들임
 public class AppConfig {}
 ```
 - @Component(basePackages={})로 basePackages를 설정하면 지정한 패키지를 포함한 모든 하위 패키지를 스캔하게 된다.
