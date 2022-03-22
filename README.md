@@ -21,7 +21,7 @@ ApplicationContext ctx = new AnnotationConfigApplicationContext(Config.class);
 @ComponentScan(basePackages = {com.sample.spring})
 public class AppConfig {}
 ```
-- @Component(basePackages={})로 basePackages를 설정하면 지정한 패키지의 하위패키지들을 모두 스캔하게 된다.
+- @Component(basePackages={})로 basePackages를 설정하면 지정한 패키지를 포함한 모든 하위 패키지를 스캔하게 된다.
 
 <br/>
 <br/>
