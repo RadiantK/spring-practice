@@ -28,8 +28,15 @@ public class AppConfig {}
     
 ## 빈 라이프사이클
 ```java
+// 컨테이너 초기화
+ApplicationContext ctx = AnnotationConfigApplicationContext(AppContext.class);
+// 컨테이너에서 빈 객체를 구해서 사용
+Clazz clazz = ctx.getBean(Clazz.class);
+// 컨테이너 종료
+ctx.close();
 ```
-
+- 스프링 컨테이너를 초기화 할때 먼저 Bean 객체를 생성하고 의존 설정을 한 뒤 빈 객체를 초기화 한다.
+- 컨테이너를 종료하면 빈 객체가 소멸하게 된다.
 
 <br/>
 <br/>
