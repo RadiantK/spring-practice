@@ -1,5 +1,10 @@
 # spring-practice
 
+## Build-tool
+- Maven 사용
+- pom.xml(Project Object Model)파일 : 메이븐 프로젝트에 대한 설정 정보를 관리하는 파일로써 프로젝트에서 필요로 하는 의존 모듈이나 플러그인 등에 대한 설정을 담는다.
+<br/>
+        
 ## DI(Dependency Injection) : 의존성 주입
 - 의존이란 변경에 의해 영향을 받는 관계를 의미
 - DI란 의존하는 객체를 직접 생성하는 대신 의존 객체를 전달받는 방식
