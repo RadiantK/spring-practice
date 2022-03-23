@@ -99,8 +99,8 @@ public class AppContext{
 <br/>
                 
 ### AOP(Aspect Oriented Programming) : 관점지향 프로그래밍
-- pom.xml에 aspectjweaver모듈을 의존에 추가, spring-aop모듈은 spring-context모듈의 의존을 추가하면 자동으로 의존이 추가된다.
 - 프록시(proxy) : 핵심 기능의 실행은 다른 객체에 위임하고 부가적인 기능을 제공하는 객체
+- 실제 핵심 기능을 실행하는 객체는 대상 객체라고 한다.
 
 
 <br/>
