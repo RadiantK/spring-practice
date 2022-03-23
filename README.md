@@ -3,7 +3,8 @@
 ## Build-tool
 - Maven 사용
 - pom.xml(Project Object Model)파일 : 메이븐 프로젝트에 대한 설정 정보를 관리하는 파일로써 프로젝트에서 필요로 하는 의존 모듈이나 플러그인 등에 대한 설정을 담는다.
-- pom.xml 설정 : spring-context 의존 추가, 메이븐 컴파일러 플러그인 설정 및 자바 버전 
+- pom.xml 설정 : spring-context모듈 의존 추가, 메이븐 컴파일러 플러그인 설정 및 자바 버전 jdk11로 설정
+- 필요한 모듈에 대한 의존은 필요할 때 마다 Maven Repository에 검색해서 추가해준다.
 ```xml
   <!-- 의존 추가 -->
   <dependencies>
@@ -98,8 +99,8 @@ public class AppContext{
 <br/>
                 
 ### AOP(Aspect Oriented Programming) : 관점지향 프로그래밍
-- pom.xml에 aspectjweaver를 의존에 추가, spring-context모듈의 의존을 추가하면 자동으로 spring-aop모듈도 의존이 
-
+- pom.xml에 aspectjweaver모듈을 의존에 추가, spring-aop모듈은 spring-context모듈의 의존을 추가하면 자동으로 의존이 추가된다.
+- 프록시(proxy) : 핵심 기능의 실행은 다른 객체에 위임하고 부가적인 기능을 제공하는 객체
 
 
 <br/>
