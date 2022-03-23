@@ -49,6 +49,23 @@ public class Clazz {
 @Bean(initMethod = "init", destoryMethod="destroy")
 public Clazz clazz() {}
 ```
+<br/>
+        
+## 빈의 생성과 스코프(범위)
+- 식별자에 대해서 한 객체만 존재하는 빈은 default값으로 싱글톤(singleton)의 범위를 갖는다.
+- 빈을 주입할 때마다 다른 주소를 갖는 객체를 생성 하려면 빈의 스코프를 prototype로 설정해주면 된다.
+```java
+@Configuration
+public class AppContext{
+    @Bean
+    @Scope("prototype")
+    public User user(){
+        User user = new User();
+    }
+}
+```
+
+
 
 <br/>
 <br/>
