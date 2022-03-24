@@ -104,7 +104,7 @@ public class AppContext{
 - 프록시는 핵심 기능을 구현하지 않고, 여러 객체에 공통으로 적용할 수 있는 기능을 구현한다.
 - AOP의 주요 개념
   - Aspect : 여러 객체에 공통으로 적용되는 기능(트랜잭션 , 보안 등)
-  - Advice : 언제 공통의 기능을 로직에 적용할 지를 정의
+  - Advice : 언제 공통의 기능을 로직에 적용할 지를 정의(@Before @After @AfterThrowing @AfterReturning @Around)
   - JoinPoint : Advice를 적용 가능한 지점(스프링은 프록시를 이용해서 aop를 구현하기때문에 메소드 호출에 대한 JoinPoint만 지원)
   - Pointcut : JoinPoint의 부분집합으로 실제 Advice가 적용되는 JoinPoint를 나타낸다.(AspectJ문법이나 정규 표현식으로 정의가능)
   - Weaving : Advice를 핵심 로직 코드에 적용하는 것
