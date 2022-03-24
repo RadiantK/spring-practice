@@ -108,6 +108,7 @@ public class AppContext{
   - JoinPoint : Advice를 적용 가능한 지점(스프링은 프록시를 이용해서 aop를 구현하기때문에 메소드 호출에 대한 JoinPoint만 지원)
   - Pointcut : JoinPoint의 부분집합으로 실제 Advice가 적용되는 JoinPoint를 나타낸다.(AspectJ문법이나 정규 표현식으로 정의가능)
   - Weaving : Advice를 핵심 로직 코드에 적용하는 것
+- 메소드 시그니처(Method Signature) : 메소드의 이름과 파라미터(메소드의 리턴 타입, 예외 타입은 시그니처에 포함되지 않는다.)
 
 <br/>
 <br/>
