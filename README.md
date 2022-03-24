@@ -109,6 +109,20 @@ public class AppContext{
   - Pointcut : JoinPoint의 부분집합으로 실제 Advice가 적용되는 JoinPoint를 나타낸다.(AspectJ문법이나 정규 표현식으로 정의가능)
   - Weaving : Advice를 핵심 로직 코드에 적용하는 것
 - 메소드 시그니처(Method Signature) : 메소드의 이름과 파라미터(메소드의 리턴 타입, 예외 타입은 시그니처에 포함되지 않는다.)
+```java
+@Aspect // aop를 적용할 클래스에 적용하는 어노테이션
+public class AopAspect {}
+
+// spring설정 클래스에 @EnableAspectJAutoProxy  어노테이션을 달면 @Aspect이 붙은 빈 객체를 찾아 빈 객체의 @Pointcut설정과 Advice를 적용한다.
+@Configuration
+@EnableAspectJAutoProxy 
+public class AppConfig {}
+```
+- ProceedingJoinPoint 인터페이스는 프록시 대상 객체의 메서드를 호출할 때 사용하며 다음 메소드를 제공한다.
+  - Signature getSignature() : 호출되는 메소드에 대한 정보를 구한다.
+  - Object getTarget() : 대상 객체를 구한다.
+  - Object[] getArgs : 파라미터 목록을 구한다.
+- 
 
 <br/>
 <br/>
