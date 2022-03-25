@@ -9,6 +9,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
 @Aspect
+//@Order(1)
 public class ExecuteTimeAspect {
 
 	// com.radiantk.test패키지와 그 하위 패키지에 위치한 타입의 public 메서드를 지정
