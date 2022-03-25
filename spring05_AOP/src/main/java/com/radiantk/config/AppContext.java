@@ -10,7 +10,7 @@ import com.radiantk.test.RecursiveCalculator;
 //인터페이스가 아닌 자바 클래스를 상속받아서 프록시를 생성할 때
 // @EnableAspectJAutoProxy(proxyTargetClass = true) 
 @Configuration
-@EnableAspectJAutoProxy
+@EnableAspectJAutoProxy // 빈 객체가 인터페이스를 상속하면 인터페이스를 사용해서 프록시 생성
 public class AppContext {
 
 	@Bean
