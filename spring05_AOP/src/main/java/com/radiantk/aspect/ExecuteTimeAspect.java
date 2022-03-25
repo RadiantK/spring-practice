@@ -22,7 +22,7 @@ public class ExecuteTimeAspect {
 		
 		try {
 			Object result = joinPoint.proceed(); // 메소드를 호출할 때 사용
-			System.out.println("result : " + result);
+//			System.out.println("result : " + result);
 			return result;
 		}  finally {
 			long finish = System.nanoTime();
