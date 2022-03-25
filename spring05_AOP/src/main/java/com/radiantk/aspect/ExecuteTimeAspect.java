@@ -26,9 +26,9 @@ public class ExecuteTimeAspect {
 			return result;
 		}  finally {
 			long finish = System.nanoTime();
-			Signature sig = joinPoint.getSignature();
+			Signature sig = joinPoint.getSignature(); // 호출되는 메소드의 정보
 			System.out.printf("%s.%s(%s) 실행 시간 : %d ns\n",
-					joinPoint.getTarget().getClass().getSimpleName(),
+					joinPoint.getTarget().getClass().getSimpleName(), // 대상 객체
 					sig.getName(), Arrays.toString(joinPoint.getArgs()),
 					(finish - start));
 		}
