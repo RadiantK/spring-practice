@@ -19,5 +19,7 @@ repositories {
 
 dependencies {
 	implementation group: 'org.springframework', name: 'spring-context', version: '5.2.12.RELEASE'
-	
+	implementation group: 'org.apache.tomcat', name: 'tomcat-jdbc', version: '9.0.56'
+	implementation group: 'org.springframework', name: 'spring-jdbc', version: '5.2.12.RELEASE'
+	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.27'
 }
