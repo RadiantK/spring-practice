@@ -69,6 +69,7 @@ public class MainForSpringAppContext {
 			System.out.println("암호와 확인이 일치하지 않습니다.\n");
 			return;
 		}
+		
 		try {
 			regService.regist(req);
 			System.out.println("등록되었습니다.\n");
@@ -107,6 +108,7 @@ public class MainForSpringAppContext {
 			printHelp();
 			return;
 		}
+		
 		MemberInfoPrinter infoPrinter = 
 				ctx.getBean("memberInfoPrinter", MemberInfoPrinter.class);
 		infoPrinter.printMemberInfo(arg[1]);

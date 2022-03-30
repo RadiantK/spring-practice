@@ -11,6 +11,7 @@ public class MemberInfoPrinter {
 			System.out.println("데이터 없음\n");
 			return;
 		}
+		
 		memberPrinter.print(member);
 		System.out.println();
 	}
