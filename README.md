@@ -15,7 +15,7 @@
 	</dependency>
   </dependencies>
   
-  <!-- 자바 소스를 컴파일하고 결과클래스 생성  -->
+  <!-- 자바 컴파일 플러그인 설정 및 자바 버전 설정  -->
   <build>
   	<plugins>
   		<plugin>
