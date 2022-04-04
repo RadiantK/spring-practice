@@ -18,7 +18,7 @@ public class MemberDao {
 	}
 	
 	Member selectByEmail(String email) {
-		String sql = "SELECT * FROM MEMBER WHERE EMAIL = ?";
+		String sql = "SELECT * FROM member WHERE email = ?";
 		// jdbcTemplate.query(String sql, RowMapper<T> rowMapper, Objects... args)
 		// 인덱스기반 파라미터를 가진 쿼리문(?)이면 args를 이용해서 파라미터 값 지정
 		List<Member> results = jdbcTemplate.query(sql, 
@@ -44,10 +44,14 @@ public class MemberDao {
 	}
 	
 	public void update(Member member) {
+		String sql = "UPDATE member SET name = ?, password = ? WHERE email = ?";
+		// 쿼리의 인덱스 파라미터 값 전달
+		jdbcTemplate.update(
+				sql, member.getName(), member.getPassword(), member.getEmail());
 	}
 	
 	public List<Member> selectAll(){
-		String sql = "SELECT * FROM MEMBER";
+		String sql = "SELECT * FROM member";
 		List<Member> results = jdbcTemplate.query(sql, 
 			new RowMapper<Member>() {
 				@Override
