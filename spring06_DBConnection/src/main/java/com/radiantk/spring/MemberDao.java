@@ -2,7 +2,6 @@ package com.radiantk.spring;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collection;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -47,7 +46,29 @@ public class MemberDao {
 	public void update(Member member) {
 	}
 	
-	public Collection<Member> selectAll(){
-		return null;
+	public List<Member> selectAll(){
+		String sql = "SELECT * FROM MEMBER";
+		List<Member> results = jdbcTemplate.query(sql, 
+			new RowMapper<Member>() {
+				@Override
+				public Member mapRow(ResultSet rs, int rowNum) 
+						throws SQLException {
+					Member member = new Member(
+					rs.getString("email"),
+					rs.getString("password"),
+					rs.getString("name"),
+					rs.getTimestamp("regDate").toLocalDateTime());
+					member.setId(rs.getLong("id"));
+					return member;
+				}
+			
+			});
+		return results;
+	}
+	
+	public int count() {
+		String sql = "SELECT COUNT(*) FROM MEMBER";
+		Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
+		return count;
 	}
 }
