@@ -18,7 +18,7 @@ public class AppContext {
 	@Bean(destroyMethod = "close") // 커넥션 풀에 보관된 커넥션을 닫음
 	public DataSource dataSource() {
 		DataSource ds = new DataSource();
-		ds.setDriverClassName("com.mysql.jdbc.Driver"); // JDBC 드라이버 클래스 지정
+		ds.setDriverClassName("com.mysql.cj.jdbc.Driver"); // JDBC 드라이버 클래스 지정
 		ds.setUrl("jdbc:mysql://localhost/spring5?characterEncoding=utf8"); // jdbc url지정
 		ds.setUsername("spring5");
 		ds.setPassword("spring5");
