@@ -1,13 +1,19 @@
 package com.radiantk.spring;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 public class MemberDao {
 
@@ -41,6 +47,25 @@ public class MemberDao {
 	}
 	
 	public void insert(Member member) {
+		String sql = "INSERT INTO member(email, password, name, regDate) "
+				+ "VALUES(?,?,?,?)";
+		
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) 
+					throws SQLException {
+				PreparedStatement pstmt = 
+						con.prepareStatement(sql, new String[] {"id"});
+				pstmt.setString(1, member.getEmail());
+				pstmt.setString(2, member.getPassword());
+				pstmt.setString(3, member.getName());
+				pstmt.setTimestamp(4, Timestamp.valueOf(member.getRegDateTime()));
+				return pstmt;
+			}
+		}, keyHolder); // keyHolder에 자동 생성된 키값 보관(primary key)
+		Number keyValue = keyHolder.getKey();
+		member.setId(keyValue.longValue());
 	}
 	
 	public void update(Member member) {
