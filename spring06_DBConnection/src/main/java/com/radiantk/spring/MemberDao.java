@@ -23,7 +23,7 @@ public class MemberDao {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
-	Member selectByEmail(String email) {
+	public Member selectByEmail(String email) {
 		String sql = "SELECT * FROM member WHERE email = ?";
 		// jdbcTemplate.query(String sql, RowMapper<T> rowMapper, Objects... args)
 		// 인덱스기반 파라미터를 가진 쿼리문(?)이면 args를 이용해서 파라미터 값 지정
