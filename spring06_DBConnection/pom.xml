@@ -10,27 +10,41 @@
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-context</artifactId>
 	    <version>5.2.12.RELEASE</version>
-	</dependency>
+		</dependency>
 	
-	<!-- jdbc template등 jdbc연동에 필요한 기능 제공 -->
-	<dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>spring-jdbc</artifactId>
-	    <version>5.2.12.RELEASE</version>
-	</dependency>
+		<!-- jdbc template등 jdbc연동에 필요한 기능 제공 -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-jdbc</artifactId>
+		    <version>5.2.12.RELEASE</version>
+		</dependency>
 
-	<!-- DB커넥션 풀 기능 제공 -->
-	<dependency>
-	    <groupId>org.apache.tomcat</groupId>
-	    <artifactId>tomcat-jdbc</artifactId>
-	    <version>9.0.56</version>
-	</dependency>
+		<!-- DB커넥션 풀 기능 제공 -->
+		<dependency>
+		    <groupId>org.apache.tomcat</groupId>
+		    <artifactId>tomcat-jdbc</artifactId>
+		    <version>9.0.56</version>
+		</dependency>
 	
-	<dependency>
-	    <groupId>mysql</groupId>
-	    <artifactId>mysql-connector-java</artifactId>
-	    <version>8.0.27</version>
-	</dependency>
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>8.0.27</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-api</artifactId>
+		    <version>1.7.25</version>
+		</dependency>
+		
+		<!-- log4j의 단점및 개선 기능을 추가하여 개발한 로깅 라이브러리 -->
+		<dependency>
+		    <groupId>ch.qos.logback</groupId>
+		    <artifactId>logback-classic</artifactId>
+		    <version>1.2.3</version>
+		</dependency>
+
   </dependencies>
   
   <!-- 자바 소스를 컴파일하고 결과클래스 생성 jdk컴파일러 설정 -->
