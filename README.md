@@ -54,7 +54,7 @@ ApplicationContext ctx = new AnnotationConfigApplicationContext(Config.class);
 @ComponentScan(basePackages = {com.sample.spring}) // 등록된 컴포넌트(빈)를 읽어들임
 public class AppConfig {}
 ```
-- @Component(basePackages={})로 basePackages를 설정하면 지정한 패키지를 포함한 모든 하위 패키지를 스캔하게 된다.
+- @ComponentScan(basePackages={})로 basePackages를 설정하면 지정한 패키지를 포함한 모든 하위 패키지를 스캔하게 된다.
 - 컴포넌트 스캔 대상에 @Component를 제외하고도 포함되는 것들이 있는데 MVC와 관련이 있는 @Controller, @Service DB연동과 관련된 Repository및 @Aspect @Configuration이 @Component를 포함하므로 컴포넌트 스캔 대상에 포함된다.
 <br/>
     
