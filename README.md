@@ -113,7 +113,8 @@ public class AppContext{
 @Aspect // aop를 적용할 클래스에 적용하는 어노테이션
 public class AopAspect {}
 
-// spring설정 클래스에 @EnableAspectJAutoProxy  어노테이션을 달면 @Aspect이 붙은 빈 객체를 찾아 빈 객체의 @Pointcut설정과 Advice를 적용한다.
+// spring설정 클래스에 @EnableAspectJAutoProxy  어노테이션을 달면 
+// @Aspect이 붙은 빈 객체를 찾아 빈 객체의 @Pointcut설정과 Advice를 적용한다.
 @Configuration
 @EnableAspectJAutoProxy 
 public class AppConfig {}
