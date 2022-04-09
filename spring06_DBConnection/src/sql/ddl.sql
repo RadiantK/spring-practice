@@ -11,3 +11,6 @@ create table spring5fs.MEMBER (
     REGDATE datetime,
     unique key (EMAIL) 
 ) engine=InnoDB character set = utf8;
+
+INSERT INTO MEMBER(email, password, name, regdate) 
+VALUES('radiantk@radiantk.com', '1234', 'kmk', now());
