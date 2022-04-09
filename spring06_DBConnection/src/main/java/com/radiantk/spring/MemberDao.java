@@ -29,7 +29,8 @@ public class MemberDao {
 		// 인덱스기반 파라미터를 가진 쿼리문(?)이면 args를 이용해서 파라미터 값 지정
 		List<Member> results = jdbcTemplate.query(sql, 
 			new RowMapper<Member>() {
-				// ResultSet의 데이터를 읽어옴, rowNum : 현재 행의 번호
+				// ResultSet : sql을 수행한 결과값 
+				// rowNum : Result에 들어온 수행된 sql쿼리문의 결과값 목록의 행의 갯수
 				@Override
 				public Member mapRow(ResultSet rs, int rowNum) 
 						throws SQLException {
