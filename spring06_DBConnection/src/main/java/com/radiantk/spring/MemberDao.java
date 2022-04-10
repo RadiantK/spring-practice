@@ -51,6 +51,7 @@ public class MemberDao {
 		String sql = "INSERT INTO member(email, password, name, regDate) "
 				+ "VALUES(?,?,?,?)";
 		
+		//int update(final PreparedStatementCreator psc, final KeyHolder generatedKeyHolder)
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override
@@ -71,6 +72,7 @@ public class MemberDao {
 	
 	public void update(Member member) {
 		String sql = "UPDATE member SET name = ?, password = ? WHERE email = ?";
+		// int update(String sql, Object... args)
 		// 쿼리의 인덱스 파라미터 값 전달
 		jdbcTemplate.update(
 				sql, member.getName(), member.getPassword(), member.getEmail());
