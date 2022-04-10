@@ -37,6 +37,7 @@ public class AppContext {
 	
 	@Bean
 	public PlatformTransactionManager transactionManager() {
+//		dataSource 프로퍼티를 통해 전달받은 Connection으로 commit, rollback을 수행하면서 관리
 		DataSourceTransactionManager tm = new DataSourceTransactionManager();
 		tm.setDataSource(dataSource());
 		
