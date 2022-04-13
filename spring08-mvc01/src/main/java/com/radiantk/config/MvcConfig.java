@@ -18,7 +18,7 @@ public class MvcConfig implements WebMvcConfigurer {
 //	*.css와 같은 컨트롤러에 매핑되어 있지 않은 URL요청은 최종적으로 DefaultServlet에 전달되어 처리하는 역할
 //	DispatcherServlet의 매핑이 "/"로 지정하면 JSP를 제외한 모든 요청이 DispatcherServlet으로 
 //	가기 때문에, WAS가 제공하는 Default Servlet이 *.html, *.css같은 요청을 처리할 수 없게됨.
-//	Default ServletHandler는 이런 요청들을 Default Servlet에게 전달해주는 Handler이다.
+//	DefaultServletHandler는 이런 요청들을 DefaultServlet에게 전달해주는 Handler이다.
 //	요청 URL에 매핑되는 컨트롤러가 존재하지 않을 때, 404응답 대신,
 //	DefaultServlet이 해당 요청 URL을 처리하도록 함.
 	@Override
