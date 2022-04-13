@@ -11,9 +11,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebMvc // 스프링 MVC를 구성할 때 필요한 빈의 설정을 자동으로 해줌(빈의 등록을 손쉽게 할 수 있음)
 public class MvcConfig implements WebMvcConfigurer {
 
-	// DispatcherServlet의 매핑경로를'/'로 주었을 때 JSP/HTML/CSS 등을 올바르게 처리하기 위한 설정.
-	// DefaultServlet는 .jsp패턴에 걸리지 않는 정적 페이지의 요청을 처리
-	// 우선순위가 가장 낮기때문에 모든 요청의 경로를 defaultServlet이 처리하게 된다.
+//	*.jsp는 톰캣안에 매핑되어있는데 defaultServlet도 매핑되어있다.
+//	그래서 defaultServlet를 재정의하면 내장된 매핑보다 우선적으로 적용된다.(dispather가 먼저적용)
+	
+//	DispatcherSerlvet이 처리하지 못한 요청을 DefaultSerlvet에게 넘겨주는 역할을 하는 핸들러
+//	*.css와 같은 컨트롤러에 매핑되어 있지 않은 URL요청은 최종적으로 DefaultServlet에 전달되어 처리하는 역할
+//	DispatcherServlet의 매핑이 "/"로 지정하면 JSP를 제외한 모든 요청이 DispatcherServlet으로 가기 때문에,
+//	WAS가 제공하는 Default Servlet이 *.html, *.css같은 요청을 처리할 수 없게됨.
+//	Default ServletHandler는 이런 요청들을 Default Servlet에게 전달해주는 Handler이다.
+//	요청 URL에 매핑되는 컨트롤러가 존재하지 않을 때, 404응답 대신,
+//	DefaultServlet이 해당 요청 URL을 처리하도록 함.
 	@Override
 	public void configureDefaultServletHandling(
 			DefaultServletHandlerConfigurer configurer) {
