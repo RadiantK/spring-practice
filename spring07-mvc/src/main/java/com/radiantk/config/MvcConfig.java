@@ -13,6 +13,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
 	// DispatcherServlet의 매핑경로를'/'로 주었을 때
 	// JSP/HTML/CSS 등을 올바르게 처리하기 위한 설정을 추가한다.
+	// 우선순위가 가장 낮기때문에 모든 요청의 경로를 defaultServlet이 처리하게 된다.
 	@Override
 	public void configureDefaultServletHandling(
 			DefaultServletHandlerConfigurer configurer) {
@@ -21,6 +22,8 @@ public class MvcConfig implements WebMvcConfigurer {
 	// JSP를 이용해서 컨트롤러의 실행결과를 보여주기 위한 설정을 추가한다.
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
+		// jsp(prefix, suffix)
+		// prefix + 뷰 이름 + suffix의 경로를 뷰 코드로 사용하는 뷰 객체를 리턴
 		registry.jsp("/WEB-INF/view/", ".jsp");
 	}
 }
