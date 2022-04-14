@@ -3,6 +3,7 @@ package com.radiantk.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -32,5 +33,12 @@ public class MvcConfig implements WebMvcConfigurer {
 		// jsp(prefix, suffix)
 		// prefix + 뷰 이름 + suffix의 경로를 뷰 코드로 사용하는 뷰 객체를 리턴
 		registry.jsp("/WEB-INF/view/", ".jsp");
+	}
+	
+	// 특정 요청 url에 대해 컨트롤러 로직 없이 바로 뷰를 리턴하는 경우
+	// ViewController를 사용해서 뷰를 매핑할 수 있다.
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/main").setViewName("main");
 	}
 }
