@@ -28,6 +28,9 @@ public class RegisterController {
 	
 	@PostMapping("/register/step2")
 	public String handleStep2(
+			// value : 요청 파라미터 이름 지정, required = 기본값 true
+			// defaultValue : 요청 파라미터 값이 없을 때 사용할 문자열 값 지정. 기본값음 없음
+			// 스프링 MVC는 파라미터 타입에 맞게 String 값을 변환해준다.
 			@RequestParam(value = "agree", defaultValue = "false") Boolean agree,
 			Model model) {
 		if(!agree) {
