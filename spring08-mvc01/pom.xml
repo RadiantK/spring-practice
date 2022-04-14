@@ -53,6 +53,19 @@
 		    <artifactId>mysql-connector-java</artifactId>
 		    <version>8.0.27</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-api</artifactId>
+		    <version>1.7.25</version>
+		</dependency>
+		
+		<!-- log4j의 단점및 개선 기능을 추가하여 개발한 로깅 라이브러리 -->
+		<dependency>
+		    <groupId>ch.qos.logback</groupId>
+		    <artifactId>logback-classic</artifactId>
+		    <version>1.2.3</version>
+		</dependency>
   </dependencies>
   
   <build>
