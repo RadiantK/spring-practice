@@ -9,16 +9,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/survey")
 public class SurveyController {
 
 	@GetMapping
-	public String form(Model model) {
+	public ModelAndView form(Model model) {
 		List<Question> questions = createQuestions();
-		model.addAttribute("questions", questions);
-		return "survey/surveyForm";
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("questions", questions);
+		mav.setViewName("survey/surveyForm.jsp");
+		return mav;
 	}
 	
 	private List<Question> createQuestions(){
