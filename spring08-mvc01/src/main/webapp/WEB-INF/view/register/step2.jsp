@@ -10,9 +10,13 @@
 <body>
 	
 	<h2>회원 정보 입력</h2>
+	<!-- form:form의 method속성 기본값은 post action속성 기본값은 현재 URL 
+	id는 기본값이 command가 되는데 커맨드 객체의 이름이 다르면 ModelAttribute=""로 설정한다. -->
 	<form:form action="step3" modelAttribute="registerRequest">
 		<p>
 			<label>이메일:<br/>
+			<!-- id, name은 프로퍼티의 이름으로 설정하고 value는 path로 지정한 커맨드 객체의 프로퍼티값이 됨 -->
+			<!-- type="text" name="email" id="email" value="${registerRequest.email}" -->
 				<form:input path="email"/>
 			</label>
 		</p>
