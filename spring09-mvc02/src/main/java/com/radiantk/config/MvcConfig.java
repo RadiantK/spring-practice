@@ -40,6 +40,8 @@ public class MvcConfig implements WebMvcConfigurer {
 	// 메시지 파일에서 값을 읽어오는 MessageSource 빈 설정(빈은 messageSource 해야한다.)
 	@Bean
 	public MessageSource messageSource() {
+		// ResourceBundleMessageSource는 MessageSource의 구현체
+		// 자바의 프로퍼티 파일로부터 메시지를 읽어온다.
 		ResourceBundleMessageSource ms =
 				new ResourceBundleMessageSource();
 		ms.setBasename("message.label");
