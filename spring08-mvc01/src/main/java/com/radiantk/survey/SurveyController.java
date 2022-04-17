@@ -20,7 +20,7 @@ public class SurveyController {
 		List<Question> questions = createQuestions();
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("questions", questions);
-		mav.setViewName("survey/surveyForm.jsp");
+		mav.setViewName("survey/surveyForm");
 		return mav;
 	}
 	
