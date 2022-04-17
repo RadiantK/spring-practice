@@ -1,41 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title><spring:message code="member.register"/></title>
 </head>
 <body>
 	
-	<h2>회원 정보 입력</h2>
+	<h2><spring:message code="member.info"/></h2>
 	<!-- form:form의 method속성 기본값은 post action속성 기본값은 현재 URL 
 	id는 기본값이 command가 되는데 커맨드 객체의 이름이 다르면 ModelAttribute=""로 설정한다. -->
 	<form:form action="step3" modelAttribute="registerRequest">
 		<p>
-			<label>이메일:<br/>
+			<label><spring:message code="email"/>:<br/>
 			<!-- id, name은 프로퍼티의 이름으로 설정하고 value는 path로 지정한 커맨드 객체의 프로퍼티값이 됨 -->
 			<!-- type="text" name="email" id="email" value="${registerRequest.email}" -->
 				<form:input path="email"/>
 			</label>
 		</p>
 		<p>
-			<label>이름:<br/>
+			<label><spring:message code="name"/>:<br/>
 				<form:input path="name"/>
 			</label>
 		</p>
 		<p>
-			<label>비밀번호:<br/>
+			<label><spring:message code="password"/>:<br/>
 				<form:password path="password"/>
 			</label>
 		</p>
 		<p>
-			<label>비밀번호 확인:<br/>
+			<label><spring:message code="password.confirm"/>:<br/>
 				<form:password path="confirmPassword"/>
 			</label>
 		</p>
-		<input type="submit" value="가입 완료" />
+		<input type="submit" value="<spring:message code="register.btn"/>" />
 	</form:form>
 	
 <%-- 
