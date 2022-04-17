@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.radiantk.controller.RegisterController;
+import com.radiantk.form.FormController;
 import com.radiantk.spring.MemberRegisterService;
 import com.radiantk.survey.SurveyController;
 
@@ -24,5 +25,10 @@ public class ControllerConfig {
 	@Bean
 	public SurveyController surveyController() {
 		return new SurveyController();
+	}
+	
+	@Bean
+	public FormController loginController() {
+		return new FormController();
 	}
 }
