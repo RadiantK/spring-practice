@@ -17,24 +17,28 @@
 	<form:form action="step3" modelAttribute="registerRequest">
 		<p>
 			<label><spring:message code="email"/>:<br/>
-			<!-- id, name은 프로퍼티의 이름으로 설정하고 value는 path로 지정한 커맨드 객체의 프로퍼티값이 됨 -->
-			<!-- type="text" name="email" id="email" value="${registerRequest.email}" -->
+				<!-- id, name은 path 설정하고 value는 path로 지정한 커맨드 객체의 프로퍼티값이 됨 -->
 				<form:input path="email"/>
+				<!-- 에러메시지를 출력할 프로퍼티 이름을 지정 -->
+				<form:errors path="email"/>
 			</label>
 		</p>
 		<p>
 			<label><spring:message code="name"/>:<br/>
 				<form:input path="name"/>
+				<form:errors path="name" />
 			</label>
 		</p>
 		<p>
 			<label><spring:message code="password"/>:<br/>
 				<form:password path="password"/>
+				<form:errors path="password" />
 			</label>
 		</p>
 		<p>
 			<label><spring:message code="password.confirm"/>:<br/>
 				<form:password path="confirmPassword"/>
+				<form:errors path="confirmPassword"/>
 			</label>
 		</p>
 		<input type="submit" value="<spring:message code="register.btn"/>" />
