@@ -44,6 +44,8 @@ public class RegisterRequestValidator implements Validator {
 				errors.rejectValue("email", "bad");
 			}
 		}
+		// errors.getFieldValue()를 통해 커맨드 객케를 전달받지 않아도 
+		// Errors객체를 이용해서 지정한 값을 구할 수 있다.
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "required");
 		ValidationUtils.rejectIfEmpty(errors, "password", "required");
 		ValidationUtils.rejectIfEmpty(errors, "confirmPassword", "required");
