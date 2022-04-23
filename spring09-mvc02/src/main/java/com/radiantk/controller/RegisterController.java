@@ -1,5 +1,7 @@
 package com.radiantk.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -51,9 +53,9 @@ public class RegisterController {
 	// 커맨드 객체는 보통 DTO 를 의미하며, HttpServletRequest 로 받아오는 요청 파라미터의
 	// key 값과 동일한 이름의 속성들과 setter 메서드를 가지고 있어야 한다.
 	@PostMapping("/register/step3")
-	public String handleStep3(RegisterRequest regReq, Errors errors) {
+	public String handleStep3(@Valid RegisterRequest regReq, Errors errors) {
 		// Errors객체는 커맨드 객체의 특정 프로퍼티 값을 구할 수 있는 getFieldValue()를 제공
-		new RegisterRequestValidator().validate(regReq, errors);
+		// new RegisterRequestValidator().validate(regReq, errors);
 		if(errors.hasErrors()) { // 에러가 존재하는지 검사
 			return "register/step2";
 		}
