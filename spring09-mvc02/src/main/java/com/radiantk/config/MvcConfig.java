@@ -4,11 +4,14 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.validation.Validator;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import com.radiantk.controller.RegisterRequestValidator;
 
 //WebMvcConfigurer 인터페이스 : 스프링 MVC의 개별설정을 조정할 때 사용
 @Configuration // 스프링 설정 클래스
@@ -44,8 +47,14 @@ public class MvcConfig implements WebMvcConfigurer {
 		// 자바의 프로퍼티 파일로부터 메시지를 읽어온다.
 		ResourceBundleMessageSource ms =
 				new ResourceBundleMessageSource();
-		ms.setBasename("message.label");
+		ms.setBasename("message.label"); // message패키지의 label파일을 읽어옴
 		ms.setDefaultEncoding("UTF-8");
 		return ms;
+	}
+	
+	// @Valid 어노테이션을 사용해서 Validator적용 가능(전체 범위)
+	@Override
+	public Validator getValidator() {
+		return new RegisterRequestValidator();
 	}
 }
