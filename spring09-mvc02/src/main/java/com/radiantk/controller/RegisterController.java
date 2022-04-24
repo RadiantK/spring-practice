@@ -67,4 +67,11 @@ public class RegisterController {
 			return "register/step2";
 		}
 	}
+	
+	// @InitBinder 이 붙은 메소드는 컨트롤러의 요청 처리 메소드를 실행하기 전에 매번 실행
+//	@InitBinder
+//	protected void initBinder(WebDataBinder binder) {
+//		// 컨트롤러 범위에 설정할 Validator 설정
+//		binder.setValidator(new RegisterRequestValidator());
+//	}
 }
