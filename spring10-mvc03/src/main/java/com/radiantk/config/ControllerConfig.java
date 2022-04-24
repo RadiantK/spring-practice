@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.radiantk.controller.LoginController;
+import com.radiantk.controller.LogoutController;
 import com.radiantk.controller.RegisterController;
+import com.radiantk.spring.AuthService;
 import com.radiantk.spring.MemberRegisterService;
 
 @Configuration
@@ -12,6 +15,8 @@ public class ControllerConfig {
 	
 	@Autowired
 	public MemberRegisterService memberRegisterService;
+	@Autowired
+	private AuthService authService;
 	
 	@Bean
 	public RegisterController registerController() {
@@ -20,4 +25,15 @@ public class ControllerConfig {
 		return registerController;
 	}
 	
+	@Bean
+	public LoginController loginController() {
+		LoginController controller = new LoginController();
+		controller.setAuthService(authService);
+		return controller;
+	}
+	
+	@Bean
+	public LogoutController logoutController() {
+		return new LogoutController();
+	}
 }
