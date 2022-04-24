@@ -64,4 +64,9 @@ public class Member {
 		
 		this.password = newPassword;
 	}
+	
+	// 암호일치 여부 확인
+	public boolean matchPassword(String password) {
+		return this.password.equals(password);
+	}
 }
