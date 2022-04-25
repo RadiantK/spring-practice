@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.radiantk.interscptor.AuthCheckInterceptor;
+import com.radiantk.interceptor.AuthCheckInterceptor;
 
 //WebMvcConfigurer 인터페이스 : 스프링 MVC의 개별설정을 조정할 때 사용
 @Configuration // 스프링 설정 클래스
