@@ -27,6 +27,14 @@
 				<form:errors path="password" />
 			</label>
 		</p>
+		
+		<!-- 쿠키로 이메일 저장 유무를 선택 -->
+		<p>
+			<label>
+				<spring:message code="rememberEmail" />:
+				<form:checkbox path="rememberEmail" />
+			</label>
+		</p>
 		<input type="submit" value="<spring:message code="login.btn" />" />
 	</form:form>
 </body>
