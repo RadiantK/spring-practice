@@ -6,9 +6,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import com.radiantk.interscptor.AuthCheckInterceptor;
 
 //WebMvcConfigurer 인터페이스 : 스프링 MVC의 개별설정을 조정할 때 사용
 @Configuration // 스프링 설정 클래스
@@ -49,9 +52,18 @@ public class MvcConfig implements WebMvcConfigurer {
 		return ms;
 	}
 	
-	// @Valid 어노테이션을 사용해서 Validator적용 가능(전체 범위)
-//	@Override
-//	public Validator getValidator() {
-//		return new RegisterRequestValidator();
-//	}
+	// 인터셉터를 설정하는 메소드
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(authCheckInterceptor())
+		.addPathPatterns("/edit/**");
+		// 인터셉터를 적용할 경로 패턴을 지정(Ant패턴 사용). 두개이상은 콤마로 구분
+	}
+	
+	@Bean
+	public AuthCheckInterceptor authCheckInterceptor() {
+		return new AuthCheckInterceptor();
+	}
+	
+
 }
