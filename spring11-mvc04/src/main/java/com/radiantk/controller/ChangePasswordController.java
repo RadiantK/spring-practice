@@ -43,7 +43,7 @@ public class ChangePasswordController {
 		
 		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
 		try {
-			changePasswordService.ChangePassword(
+			changePasswordService.changePassword(
 					authInfo.getEamil(),
 					pwdCmd.getCurrentPassword(),
 					pwdCmd.getNewPassword());
