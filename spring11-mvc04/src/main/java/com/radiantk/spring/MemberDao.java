@@ -24,27 +24,61 @@ public class MemberDao {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
-	public Member selectByEmail(String email) {
-		String sql = "SELECT * FROM member WHERE email = ?";
-		// jdbcTemplate.query(String sql, RowMapper<T> rowMapper, Objects... args)
-		// 인덱스기반 파라미터를 가진 쿼리문(?)이면 args를 이용해서 파라미터 값 지정
-		List<Member> results = jdbcTemplate.query(sql, 
+	private RowMapper<Member> memberRowMapper = 
+			((ResultSet rs, int rowNum) -> {
+				Member member = new Member(
+						rs.getString("email"),
+						rs.getString("password"),
+						rs.getString("name"),
+						rs.getTimestamp("regDate").toLocalDateTime());
+				member.setId(rs.getLong("id"));
+			return member;		
+			});
+	
+	/*
+	 private RowMapper<Member> memRowMapper = 
 			new RowMapper<Member>() {
-				// ResultSet : sql을 수행한 결과값 
-				// rowNum : Result에 들어온 수행된 sql쿼리문의 결과값 목록의 행의 갯수
 				@Override
-				public Member mapRow(ResultSet rs, int rowNum) 
+				public Member mapRow(ResultSet rs, int rowNum)
 						throws SQLException {
-					Member member = new Member(
-							rs.getString("email"),
+					Member member = new Member(rs.getString("email"),
 							rs.getString("password"),
 							rs.getString("name"),
 							rs.getTimestamp("regDate").toLocalDateTime());
 					member.setId(rs.getLong("id"));
 					return member;
 				}
-			}, email); // email이 ?에 매핑됨
+			};
+	 */
+	
+	public Member selectByEmail(String email) {
+		String sql = "SELECT * FROM member WHERE email = ?";
+		// jdbcTemplate.query(String sql, RowMapper<T> rowMapper, Objects... args)
+		// 인덱스기반 파라미터를 가진 쿼리문(?)이면 args를 이용해서 파라미터 값 지정
+		List<Member> results = jdbcTemplate.query(
+				sql, memberRowMapper, email); // email이 ?에 매핑됨
 		
+		return results.isEmpty() ? null : results.get(0);
+	}
+	
+	public List<Member> selectAll(){
+		String sql = "SELECT * FROM member";
+		List<Member> results = jdbcTemplate.query(sql, memberRowMapper);
+		return results;
+	}
+	
+	// 회원 가입 일자를 기준으로 검색하는 기능 구현
+	public List<Member> selectByRegdate(LocalDateTime from, LocalDateTime to){
+		String sql = "SELECT * FROM MEMBER WHERE regdate BETWEEN ? AND ? "
+				+ "ORDER BY regdate DESC";
+		List<Member> results = jdbcTemplate.query(
+				sql, memberRowMapper, from, to);
+		return results;
+	}
+	
+	public Member selectById(Long memId) {
+		String sql = "SELECT * FROM member WHERE ID = ?";
+		List<Member> results = jdbcTemplate.query(sql, memberRowMapper, memId);
 		return results.isEmpty() ? null : results.get(0);
 	}
 	
@@ -81,45 +115,10 @@ public class MemberDao {
 				sql, member.getName(), member.getPassword(), member.getEmail());
 	}
 	
-	public List<Member> selectAll(){
-		String sql = "SELECT * FROM member";
-		List<Member> results = jdbcTemplate.query(sql, 
-				(ResultSet rs, int rowNum) -> {
-					Member member = new Member(
-							rs.getString("eamil"),
-							rs.getString("password"),
-							rs.getString("name"),
-							rs.getTimestamp("regDate").toLocalDateTime());
-					member.setId(rs.getLong("id"));
-					return member;
-				});
-		return results;
-	}
-	
 	public int count() {
 		String sql = "SELECT COUNT(*) FROM MEMBER";
 		Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
 		return count;
 	}
 	
-	// 회원 가입 일자를 기준으로 검색하는 기능 구현
-	public List<Member> selectByRegdate(LocalDateTime from, LocalDateTime to){
-		String sql = "SELECT * FROM MEMBER WHERE regdate BETWEEN ? AND ? "
-				+ "ORDER BY regdate DESC";
-		List<Member> results = jdbcTemplate.query(sql,
-			new RowMapper<Member>() {
-				@Override
-				public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
-					Member member = new Member(
-							rs.getString("email"),
-							rs.getString("password"),
-							rs.getString("name"),
-							rs.getTimestamp("regdate").toLocalDateTime());
-					member.setId(rs.getLong("id"));
-					return member;
-				}
-			},
-		from, to);
-		return results;
-	}
 }
