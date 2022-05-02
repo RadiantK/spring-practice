@@ -10,7 +10,7 @@ public class ChangePasswordService {
 	// 런타임 이외의 예외에도 트랜젝션을 롤백하고 싶으면 rollbackFor속성으로 예외를 지정함
 //	@Transactional(rollbackFor = {SQLException.class, IOException.class})
 	@Transactional
-	public void ChangePassword(String email, String oldPwd, String newPwd) {
+	public void changePassword(String email, String oldPwd, String newPwd) {
 		Member member = memberDao.selectByEmail(email);
 		if(member == null) {
 			throw new MemberNotFoundException();
