@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -99,5 +100,26 @@ public class MemberDao {
 		String sql = "SELECT COUNT(*) FROM MEMBER";
 		Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
 		return count;
+	}
+	
+	// 회원 가입 일자를 기준으로 검색하는 기능 구현
+	public List<Member> selectByRegdate(LocalDateTime from, LocalDateTime to){
+		String sql = "SELECT * FROM MEMBER WHERE regdate BETWEEN ? AND ? "
+				+ "ORDER BY regdate DESC";
+		List<Member> results = jdbcTemplate.query(sql,
+			new RowMapper<Member>() {
+				@Override
+				public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
+					Member member = new Member(
+							rs.getString("email"),
+							rs.getString("password"),
+							rs.getString("name"),
+							rs.getTimestamp("regdate").toLocalDateTime());
+					member.setId(rs.getLong("id"));
+					return member;
+				}
+			},
+		from, to);
+		return results;
 	}
 }
