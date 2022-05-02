@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import com.radiantk.controller.ChangePasswordController;
 import com.radiantk.controller.LoginController;
 import com.radiantk.controller.LogoutController;
+import com.radiantk.controller.MemberDetailController;
 import com.radiantk.controller.MemberListController;
 import com.radiantk.controller.RegisterController;
 import com.radiantk.spring.AuthService;
@@ -56,6 +57,13 @@ public class ControllerConfig {
 	public MemberListController memberListController() {
 		MemberListController controller = new MemberListController();
 		controller.setMemberListController(memberDao);
+		return controller;
+	}
+	
+	@Bean
+	public MemberDetailController memberDetailController() {
+		MemberDetailController controller = new MemberDetailController();
+		controller.setMemberDao(memberDao);
 		return controller;
 	}
 }
