@@ -1,10 +1,19 @@
 package com.radiantk.command;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
 public class RegisterRequest {
 
+	@NotBlank
+	@Email
 	private String email;
+	@NotEmpty
 	private String password;
+	@NotEmpty
 	private String confirmPassword;
+	@NotBlank
 	private String name;
 	
 	public String getEmail() {
