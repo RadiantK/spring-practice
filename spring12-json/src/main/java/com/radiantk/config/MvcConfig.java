@@ -1,9 +1,16 @@
 package com.radiantk.config;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -11,6 +18,8 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.radiantk.interceptor.AuthCheckInterceptor;
 
 //WebMvcConfigurer 인터페이스 : 스프링 MVC의 개별설정을 조정할 때 사용
@@ -65,5 +74,21 @@ public class MvcConfig implements WebMvcConfigurer {
 		return new AuthCheckInterceptor();
 	}
 	
-
+	// 스프링 mvc는 자바객체를 HTTP응답으로 변환할 때 HttpMessageConverter를 사용한다.
+	// extendMessageConverters메소드는 HttpMessageConverter를 추가 설정할 때 사용
+	@Override
+	public void extendMessageConverters(
+			List<HttpMessageConverter<?>> converters) {
+		DateTimeFormatter formatter =
+				DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		// ObjectMapper 객체를 JSON형식으로 변환할 때 사용
+		// Jackson2ObjectMapperBuilder : ObjectMapper를 쉽게 생성할 수 있는 기능 제공
+		ObjectMapper objectMapper = Jackson2ObjectMapperBuilder
+				.json()
+				.serializerByType(LocalDateTime.class, 
+						new LocalDateTimeSerializer(formatter))
+				.build();
+		converters.add(
+				0, new MappingJackson2HttpMessageConverter(objectMapper));
+	}
 }
