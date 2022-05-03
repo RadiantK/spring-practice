@@ -10,6 +10,7 @@ import com.radiantk.controller.LogoutController;
 import com.radiantk.controller.MemberDetailController;
 import com.radiantk.controller.MemberListController;
 import com.radiantk.controller.RegisterController;
+import com.radiantk.controller.RestMemberController;
 import com.radiantk.dao.MemberDao;
 import com.radiantk.service.AuthService;
 import com.radiantk.service.ChangePasswordService;
@@ -64,6 +65,14 @@ public class ControllerConfig {
 	public MemberDetailController memberDetailController() {
 		MemberDetailController controller = new MemberDetailController();
 		controller.setMemberDao(memberDao);
+		return controller;
+	}
+	
+	@Bean
+	public RestMemberController restMemberController() {
+		RestMemberController controller = new RestMemberController();
+		controller.setMemberDao(memberDao);
+		controller.setMemberRegisterService(memberRegisterService);
 		return controller;
 	}
 }
