@@ -2,14 +2,17 @@ package com.radiantk.entity;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.radiantk.exception.WrongIdPasswordException;
 
 public class Member {
 	
 	private Long id;
 	private String email;
+	@JsonIgnore // Json응답 포함대상에서 제외
 	private String password;
 	private String name;
+	// @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss") // 날짜 포멧형식 지정
 	private LocalDateTime regDateTime;
 	
 	public Member(String email, String password, String name, LocalDateTime regDateTime) {
