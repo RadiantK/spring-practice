@@ -23,6 +23,7 @@ public class ApplicationContext {
 		return objTable.get(key);
 	}
 	
+	// 컴포넌트 어노테이션 및 properties파일을 읽어와서 경로를 얻어서 맵객체에 저장
 	public ApplicationContext(String propertiesPath) throws Exception {
 		Properties props = new Properties();
 		props.load(new FileReader(propertiesPath));
