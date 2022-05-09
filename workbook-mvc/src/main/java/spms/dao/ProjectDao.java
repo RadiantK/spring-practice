@@ -2,7 +2,7 @@ package spms.dao;
 
 import java.util.List;
 
-import spms.vo.Project;
+import dto.Project;
 
 public interface ProjectDao {
 	List<Project> selectList();
