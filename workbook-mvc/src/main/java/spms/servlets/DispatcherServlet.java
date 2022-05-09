@@ -60,7 +60,11 @@ public class DispatcherServlet extends HttpServlet{
 				response.sendRedirect(viewUrl.substring(9));
 				return;
 			}
-			
+			/*
+			  RequestDispatcher는 클라이언트로부터 최초에 들어온 요청을 JSP/Servlet 내에서
+			  원하는 자원으로 요청을 넘기는(보내는) 역할을 수행하거나,
+			  특정 자원에 처리를 요청하고 처리 결과를 얻어오는 기능을 수행하는 클래스
+			 */
 			RequestDispatcher rd = request.getRequestDispatcher(viewUrl);
 			rd.include(request, response);
 			
@@ -69,6 +73,7 @@ public class DispatcherServlet extends HttpServlet{
 		}
 	}
 	
+	// 요청 데이터를 준비해서 model객체에 준비해주는 메소드
 	private void prepareRequestData(HttpServletRequest request,
 			HashMap<String, Object> model, DataBinding dataBinding) throws Exception{
 		
@@ -86,6 +91,7 @@ public class DispatcherServlet extends HttpServlet{
 			dataType = (Class<?>)dataBinders[i+1];
 			// 데이터 이름과 일치하는 요청 매개변수를 찾고 데이터 타입을 통해 해당클래스의 인스턴스 생성
 			dataObj = ServletRequestDataBinder.bind(request, dataType, dataName);
+			// 지정한 dataName과 파라미터로 받은 값을 Model객체에 저장
 			model.put(dataName, dataObj);
 		}
 	}
