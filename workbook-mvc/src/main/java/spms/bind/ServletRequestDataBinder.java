@@ -8,6 +8,8 @@ import javax.servlet.ServletRequest;
 
 @SuppressWarnings("deprecation")
 public class ServletRequestDataBinder {
+	
+	// 클라이언트가 보낸 파라미터의 매개변수 값을 바인딩해줌
 	public static Object bind(
 			ServletRequest request, Class<?> dataType, String dataName) 
 					throws Exception{
@@ -25,9 +27,11 @@ public class ServletRequestDataBinder {
 		Method m = null;
 		
 		for(String paramName : paramNames) {
-			// 매개변수의 이름과 일치하는 셋터 메소드를 찾음
+			// dataType의 객체에서 매개변수의 이름과 일치하는 셋터 메소드를 찾음
 			m = findSetter(dataType, paramName);
 			if(m != null) {
+				// invoke(메서드를 실행시킬 객체, 해당 메서드에 넘길 인자)
+				// 찾은 setter메소드를 통해서 파라미터로 받은 값을 넘겨준다.
 				m.invoke(dataObject, createValueObject(m.getParameterTypes()[0],
 						request.getParameter(paramName)));
 			}
@@ -47,6 +51,7 @@ public class ServletRequestDataBinder {
 		return false;
 	}
 
+	// 파라미터의 타입에 해당하는 값을 리턴
 	private static Object createValueObject(Class<?> type, String value) {
 		if (type.getName().equals("int") || type == Integer.class) {
 			return new Integer(value);
