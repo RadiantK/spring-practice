@@ -9,8 +9,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import dto.Member;
 import spms.annotation.Component;
+import spms.dto.Member;
 
 @Component("memberDao")
 public class MySqlMemberDao implements MemberDao {

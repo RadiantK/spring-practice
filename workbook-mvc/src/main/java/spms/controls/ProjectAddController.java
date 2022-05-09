@@ -2,10 +2,10 @@ package spms.controls;
 
 import java.util.Map;
 
-import dto.Project;
 import spms.annotation.Component;
 import spms.bind.DataBinding;
 import spms.dao.ProjectDao;
+import spms.dto.Project;
 
 @Component("/project/add.do")
 public class ProjectAddController implements Controller, DataBinding{
@@ -20,7 +20,7 @@ public class ProjectAddController implements Controller, DataBinding{
 	@Override
 	public Object[] getDataBinders() {
 		return new Object[] {
-			"project", dto.Project.class	
+			"project", spms.dto.Project.class	
 		};
 	}
 

@@ -2,10 +2,10 @@ package spms.controls;
 
 import java.util.Map;
 
-import dto.Member;
 import spms.annotation.Component;
 import spms.bind.DataBinding;
 import spms.dao.MemberDao;
+import spms.dto.Member;
 
 @Component("/member/update.do")
 public class MemberUpdateController implements Controller, DataBinding {
@@ -21,7 +21,7 @@ public class MemberUpdateController implements Controller, DataBinding {
 	public Object[] getDataBinders() {
 		return new Object[] {
 			"no", Integer.class,
-			"member", dto.Member.class	
+			"member", spms.dto.Member.class	
 		};
 	}
 	

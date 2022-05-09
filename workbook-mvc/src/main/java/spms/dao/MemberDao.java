@@ -3,7 +3,7 @@ package spms.dao;
 // MemberDao 인터페이스 정의 
 import java.util.List;
 
-import dto.Member;
+import spms.dto.Member;
 
 public interface MemberDao {
   List<Member> selectList() throws Exception;

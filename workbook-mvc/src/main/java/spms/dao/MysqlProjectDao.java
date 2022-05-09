@@ -8,8 +8,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import dto.Project;
 import spms.annotation.Component;
+import spms.dto.Project;
 
 @Component("projectDao")
 public class MysqlProjectDao implements ProjectDao{

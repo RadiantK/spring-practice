@@ -1,5 +1,5 @@
 <%-- 메뉴 추가 --%>
-<%@page import="dto.Member"%>
+<%@page import="spms.dto.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>       
