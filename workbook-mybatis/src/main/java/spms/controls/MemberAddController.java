@@ -33,12 +33,12 @@ public class MemberAddController implements Controller, DataBinding{
 		if(member.getEmail() == null) {
 			return "/member/memberForm.jsp";
 		} 
-		else { // 회원 등록을 요청할 때
-//			MemberDao memberDao = (MemberDao)model.get("memberDao");
-			memberDao.insert(member);
-			
-			return "redirect:list.do";
-		}	
+		// 회원 등록을 요청할 때
+//		MemberDao memberDao = (MemberDao)model.get("memberDao");
+		memberDao.insert(member);
+		
+		return "redirect:list.do";
+	
 	}
 
 }
