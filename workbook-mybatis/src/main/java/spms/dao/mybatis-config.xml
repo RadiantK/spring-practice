@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MyBatis 설정 파일에는 DB 커넥션을 생성하는 data source에 대한 정보,
+		트랜잭션 관리자, MyBatis 동작을 제어하는 환경값, SQL mapper 파일 경로 등을 설정한다.
+		DAO 패키지에 xml 파일을 생성하고 다음과 같이 작성한다.
+		상세한 설정값은 각자 프로젝트에 맞게 변경한다. -->
+<!-- xml: 확장 가능한 마크업 언어 / 특수목적을 갖는 마크업 언어를 만들고 사용
+		 dtd:  XML 문서의 구조를 정의하기위한 언어 -->
+<!DOCTYPE configuration
+     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<properties resource="spms/dao/db.properties"/>
+	
+	<typeAliases>
+		<typeAlias type="spms.dto.Project" alias="project" />
+		<typeAlias type="spms.dto.Member" alias="member" />
+	</typeAliases>
+	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<mapper resource="spms/dao/MySqlProjectDao.xml" />
+	</mappers>
+</configuration>
