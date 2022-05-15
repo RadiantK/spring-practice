@@ -22,21 +22,14 @@ public class ApplicationContext {
 	public Object getBean(String key) {
 		return objTable.get(key);
 	}
-	
-	// 컴포넌트 어노테이션 및 properties파일을 읽어와서 경로를 얻어서 맵객체에 저장
-	public ApplicationContext(String propertiesPath) throws Exception {
-		Properties props = new Properties();
-		props.load(new FileReader(propertiesPath));
-		
-		prepareObjects(props);
-		prepareAnnotationObjects();
-		injectDependency();
+
+	public void addBean(String name, Object obj) {
+		objTable.put(name, obj);
 	}
 	
-	
-	private void prepareAnnotationObjects() throws Exception{
+	public void prepareObjectsByAnnotation(String basePackage) throws Exception{
 		// 원하는 클래스를 찾아주는 도구 "spms" : 자바의 spms하위의 모든 패키지를 검색
-		Reflections reflector = new Reflections("spms");
+		Reflections reflector = new Reflections(basePackage);
 		
 		// Component 어노테이션이 붙은 클래스들을 찾아줌
 		Set<Class<?>> list = reflector.getTypesAnnotatedWith(Component.class);
@@ -48,7 +41,11 @@ public class ApplicationContext {
 		}
 	}
 
-	private void prepareObjects(Properties props) throws Exception {
+	public void prepareObjectsByProperties(String propertiesPath) 
+			throws Exception {
+		Properties props = new Properties();
+		props.load(new FileReader(propertiesPath));
+		
 		Context ctx = new InitialContext();
 		String key = null;
 		String value = null;
@@ -65,7 +62,7 @@ public class ApplicationContext {
 		}
 	}
 	
-	private void injectDependency() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public void injectDependency() throws Exception {
 		for(String key : objTable.keySet()) {
 			if(!key.startsWith("jndi.")) {
 				callSetter(objTable.get(key));
