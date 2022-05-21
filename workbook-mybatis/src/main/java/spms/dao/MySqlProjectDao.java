@@ -9,7 +9,7 @@ import spms.annotation.Component;
 import spms.dto.Project;
 
 @Component("projectDao")
-public class MysqlProjectDao implements ProjectDao{
+public class MySqlProjectDao implements ProjectDao{
 //	DataSource ds;
 //	public void setDataSource(DataSource ds) {
 //		this.ds = ds;
