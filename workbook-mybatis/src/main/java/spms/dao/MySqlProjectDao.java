@@ -90,11 +90,13 @@ public class MySqlProjectDao implements ProjectDao{
 			
 			if(paramMap.size() > 0) {
 				paramMap.put("no", project.getNo());
+				
+				int n = sqlSession.update("spms.dao.ProjectDao.update", paramMap);
+				sqlSession.commit();
+				return n;
 			}
 			
-			int n = sqlSession.update("spms.dao.ProjectDao.update", paramMap);
-			sqlSession.commit();
-			return n;
+			return 0;
 		}finally {
 			sqlSession.close();
 		}
