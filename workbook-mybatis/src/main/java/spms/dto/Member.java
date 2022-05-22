@@ -3,12 +3,12 @@ package spms.dto;
 import java.util.Date;
 
 public class Member {
-	protected int 		no;
-	protected String 	name;
-	protected String 	email;
-	protected String 	password;
-	protected Date		createdDate;
-	protected Date		modifiedDate;
+	protected int no;
+	protected String name;
+	protected String email;
+	protected String password;
+	protected Date createdDate;
+	protected Date modifiedDate;
 	
 	public int getNo() {
 		return no;
