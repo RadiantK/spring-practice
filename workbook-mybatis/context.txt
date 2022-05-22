@@ -1,7 +1,7 @@
-    <Resource name="jdbc/studydb" auth="Container" type="javax.sql.DataSource"
+    <Resource name="jdbc/spring5" auth="Container" type="javax.sql.DataSource"
         maxActive="10" maxIdle="3" maxWait="10000" 
-        username="root"
-        password="min0808" 
+        username="spring5"
+        password="spring5" 
         driverClassName="com.mysql.cj.jdbc.Driver"
-        url="jdbc:mysql://localhost/studydb" 
+        url="jdbc:mysql://localhost/spring5" 
         closeMethod="close"/>
