@@ -12,6 +12,10 @@
 <configuration>
 	<properties resource="spms/dao/db.properties"/>
 	
+	<settings>
+		<setting name="logImpl" value="LOG4J" />
+	</settings>
+	
 	<typeAliases>
 		<typeAlias type="spms.dto.Project" alias="project" />
 		<typeAlias type="spms.dto.Member" alias="member" />
@@ -27,7 +31,7 @@
 				<property name="password" value="${password}"/>
 			</dataSource> -->
 			<dataSource type="JNDI">
-				<property name="data_source" value="java:comp/env/jdbc/spring5" />
+				<property name="data_source" value="${jndi_dataSource}" />
 			</dataSource>
 		</environment>
 	</environments>
