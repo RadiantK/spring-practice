@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- bean이라는 태그를 http://www.springframework.org/schema/beans에서 찾음 -->
+	<bean id="score1" class="exam.test06.Score"
+		p:name="일자바" p:kor="100" p:eng="90" p:math="80" />
+		
+	<bean id="score2" class="exam.test06.Score"
+		c:name="이자바" c:kor="11" c:eng="22" c:math="33" />
+</beans>
