@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SqlSession이 SQL문을 실행할때 참조하는 SQL mapper 파일을 작성한다.
+		즉 원래 DAO 클래스에 내장돼있던 SQL문을 이 SQL mapper 파일로 분리해주는 것이다.
+		DAO 패키지에 xml 파일을 생성하고 아래와 같이 작성한다.
+		필요한 resultMap과 SQL문은 각자 프로젝트에 맞게 변경한다. -->
+<!-- xml: 확장 가능한 마크업 언어 / 특수목적을 갖는 마크업 언어를 만들고 사용
+		 dtd:  XML 문서의 구조를 정의하기위한 언어 -->
+<!DOCTYPE mapper
+     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ResultMap : 자동 매핑으로 해결이 어려운 경우를 위해 구조를 설계할 수 있도록 만들어진 도구 -->
+<!-- ResultMap은 DB 필드값과 DTO객체의 프라퍼티(변수)명이 다를 때 사용한다. 
+	ResultMap id에 사용할 임의의 이름을 기술하고 type(type="Department")에는 DTO명을 적는다. 
+	column 에는 DB의 필드명을 적고 property에는 DTO 프라퍼티명을 적어준다. -->
+
+<mapper namespace="spms.dao.ProjectDao">
+	<resultMap type="project" id="projectResultMap">
+		<id column="pno" property="no" />
+		<result column="pname" property="title" />
+		<result column="content" property="content" />
+		<result column="sta_date" property="startDate" javaType="java.sql.Date" />
+		<result column="end_date" property="endDate" javaType="java.sql.Date" />
+		<result column="state" property="state" />
+		<result column="cre_date" property="createdDate" javaType="java.sql.Date" />
+		<result column="tags" property="tags" />
+	</resultMap>
+	
+	<!-- <select id="selectList" resultMap="projectResultMap">
+		SELECT pno, pname, sta_date, end_date, state 
+		FROM projects 
+		ORDER BY pno DESC
+	</select> -->
+	
+	<select id="selectList" parameterType ="map" resultMap="projectResultMap">
+		SELECT pno, pname, sta_date, end_date, state 
+		FROM projects 
+		ORDER BY 
+		<choose>
+			<when test="orderCond == 'TITLE_ASC'">pname ASC</when>
+			<when test="orderCond == 'TITLE_DESC'">pname DESC</when>
+			<when test="orderCond == 'STARTDATE_ASC'">sta_date ASC</when>
+			<when test="orderCond == 'STARTDATE_DESC'">sta_date DESC</when>
+			<when test="orderCond == 'ENDDATE'">end_date ASC</when>
+			<when test="orderCond == 'ENDDATE_ASC'">end_date DESC</when>
+			<when test="orderCond == 'STATE_ASC'">state ASC</when>
+			<when test="orderCond == 'STATE_DESC'">state DESC</when>
+			<when test="orderCond == 'PNO_ASC'">pno ASC</when>
+			<otherwise>pno DESC</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert" parameterType="project">
+		INSERT INTO 
+		projects(pname, content, sta_date, end_date, state, cre_date, tags) 
+		VALUES(#{title}, #{content}, #{startDate}, #{endDate}, 0, now(), #{tags})
+	</insert>
+	
+	<select id="selectOne" parameterType="int" resultMap="projectResultMap">
+		SELECT pno, pname, content, sta_date, end_date, state, cre_date, tags 
+		FROM projects WHERE pno = #{no}
+	</select>
+	
+	<!-- <update id="update" parameterType="project">
+		UPDATE projects SET 
+			pname = #{title},
+			content = #{content},
+			sta_date = #{startDate},
+			end_date = #{endDate},
+			state = #{state},
+			tags = #{tags} 
+		WHERE pno = #{no}
+	</update> -->
+	
+	<update id="update" parameterType="map">
+		UPDATE projects 
+		<set>
+			<if test="title != null">pname=#{title},</if>
+			<if test="content != null">content=#{content},</if>
+			<if test="startDate != null">sta_date=#{startDate},</if>
+			<if test="endDate != null">end_date=#{endDate},</if>
+			<if test="state != null">state=#{state},</if>
+			<if test="tags != null">tags=#{tags}</if>
+		</set>
+		WHERE pno = #{no}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM projects WHERE pno = #{no}
+	</delete>
+</mapper>
