@@ -6,8 +6,9 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import spms.annotation.Component;
 import spms.dto.Member;
 
 @Component("memberDao")
@@ -15,6 +16,7 @@ public class MySqlMemberDao implements MemberDao {
 	
 	SqlSessionFactory sqlSessionFactory;
 	
+	@Autowired
 	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
 		this.sqlSessionFactory = sqlSessionFactory;
 	}

@@ -3,7 +3,8 @@ package spms.controls;
 import java.util.HashMap;
 import java.util.Map;
 
-import spms.annotation.Component;
+import org.springframework.stereotype.Component;
+
 import spms.bind.DataBinding;
 import spms.dao.MemberDao;
 
