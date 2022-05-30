@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+
 import spms.bind.DataBinding;
 import spms.bind.ServletRequestDataBinder;
-import spms.context.ApplicationContext;
 import spms.controls.Controller;
 import spms.listeners.ContextLoaderListener;
 
