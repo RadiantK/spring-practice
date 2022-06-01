@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/jee
+			http://www.springframework.org/schema/jee/spring-jee.xsd">
+
+	<!-- 컴포넌트 어노테이션 자동스캔 -->
+	<context:component-scan base-package="spms" />
+	
+	<!-- jee: java Enterprise edition 
+		jndi 설정 : 톰캣서버에 등록된 DataSource 객체를 가져옴-->
+	<jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/spring5" />
+	
+	<!-- 트랜잭션을 관리할 객체 선언 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- SqlSessionFactory객체를 만들어주는 스프링 IOC컨테이너용 클래스 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
+		<property name="dataSource" ref="dataSource" />
+		<property name="typeAliasesPackage" value="spms.dto" />
+		<property name="mapperLocations" value="classpath*:spms/dao/*Dao.xml" />
+	</bean>
+</beans>
